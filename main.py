@@ -5,19 +5,14 @@ Scrieți un program pentru gestionarea unei librării. Vor fi suportate operați
 """
 from Tests.crud_tests import test_crud
 from UserInterface.UI import run_ui
+from UserInterface.UI_dict_list import run_ui
 
 
 def main():
     order_list = []
     test_crud()
+    # run_ui(order_list)
     run_ui(order_list)
 
 
 main()
-
-
-"""
-TODO
-De structurat mai bine astea drq
-
-"""

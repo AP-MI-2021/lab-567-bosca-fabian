@@ -1,18 +1,18 @@
 from Domain.Book import BookOrder
 
 
-def create(order_list, book_id, title, book_type, price, discount):
+def create(order_list, order_id, title, book_type, price, discount):
     """
     The function adds a new order to the already existing list of orders
     :param order_list: The list that has all the current orders
-    :param book_id: New order ID
+    :param order_id: New order ID
     :param title: New order book title
     :param book_type: New order book type
     :param price: New order book price
     :param discount: New order type of discount
     :return: The list of orders with the new added order
     """
-    book = BookOrder(book_id, title, book_type, price, discount)
+    book = BookOrder(order_id, title, book_type, price, discount)
     return order_list + [book]
 
 
