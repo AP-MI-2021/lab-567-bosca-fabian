@@ -32,3 +32,5 @@ def order_detail(order):
     return f'The order with the ID {get_id(order)} has the book called {get_title(order)}' \
            f'\nThe book type is {get_book_type(order)} and it has the price of {get_price(order)} RON' \
            f'\nThe current applied discount is {get_discount_type(order)}'
+
+

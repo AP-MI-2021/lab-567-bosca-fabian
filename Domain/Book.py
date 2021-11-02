@@ -13,6 +13,9 @@ class BookOrder:
         self.price = _price
         self.discount_type = _discount_type
 
+    def change_price(self, new_price):
+        self.price = new_price
+
     def get_id(self):
         return self.ID
 
@@ -23,27 +26,14 @@ class BookOrder:
         return self.book_type
 
     def get_price(self):
-        print(self.price)
         return self.price
 
     def get_discount_type(self):
         return self.discount_type
 
     def __str__(self):
-        return f'ID = {self.ID} Title = {self.book_title} Type = {self.book_type} ' \
-               f'Price = {self.price} Discount = {self.discount_type}'
-
-    def cmp(self, other):
-        if self.ID == other.ID:
-            if self.book_title == other.book_title:
-                if self.book_type == other.book_type:
-                    if self.price == other.price:
-                        if self.discount_type == other.discount_type:
-                            return 0
-        return 1
-
-    def __eq__(self, other):
-        return self.cmp(other) == 0
+        return f'ID = {self.ID}; Title = {self.book_title}; Type = {self.book_type}; ' \
+               f'Price = {self.price}; Discount = {self.discount_type}'
 
     def __repr__(self):
         return str(self)

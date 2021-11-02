@@ -12,16 +12,22 @@ def get_data():
 
 
 def test_create():
-    vanzari = get_data()
-    params = (5, 'Franklin', 'Copii', 43, 'none')
-    new_vanzare = create(vanzari, *params)
-    assert len(new_vanzare) == len(vanzari) + 1
+    try:
+        vanzari = get_data()
+        params = (5, 'Franklin', 'Copii', 43, 'none')
+        new_vanzare = create(vanzari, *params)
+        assert len(new_vanzare) == len(vanzari) + 1
+    except AssertionError:
+        print("Assertion Error")
 
 
 def test_read():
-    vanzari = get_data()
-    some_v = vanzari[2]
-    assert read(vanzari, some_v.get_id()) == some_v
+    try:
+        vanzari = get_data()
+        some_v = vanzari[2]
+        assert read(vanzari, some_v.get_id()) == some_v
+    except AssertionError:
+        print("Assertion Error")
 
 
 def test_instance(v_updated, v_list):
@@ -33,19 +39,25 @@ def test_instance(v_updated, v_list):
 
 
 def test_update():
-    vanzari = get_data()
-    v_updated = BookOrder(3, 'Geronimo Stilton', 'Copii', 60, 'gold')
-    updated = update(vanzari, v_updated)
-    assert test_instance(v_updated, updated) == 1
-    assert test_instance(v_updated, vanzari) == 0
-    assert len(updated) == len(vanzari)
+    try:
+        vanzari = get_data()
+        v_updated = BookOrder(3, 'Geronimo Stilton', 'Copii', 60, 'gold')
+        updated = update(vanzari, v_updated)
+        assert test_instance(v_updated, updated) == 1
+        assert test_instance(v_updated, vanzari) == 0
+        assert len(updated) == len(vanzari)
+    except AssertionError:
+        print("Assertion Error")
 
 
 def test_delete():
-    vanzari = get_data()
-    to_delete = 3
-    deleted = delete(vanzari, to_delete)
-    assert len(deleted) == len(vanzari) - 1
+    try:
+        vanzari = get_data()
+        to_delete = 3
+        deleted = delete(vanzari, to_delete)
+        assert len(deleted) == len(vanzari) - 1
+    except AssertionError:
+        print("Assertion Error")
 
 
 def test_crud():
