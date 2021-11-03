@@ -16,9 +16,9 @@ def create(order_list, order_id, title, book_type, price, discount):
     if discount not in types_of_discount:
         raise ValueError("This type of discount doesn't exist")
     if order_id < 0:
-            raise ValueError("ID must be a positive integer")
+        raise ValueError("ID must be a positive integer")
     if price <= 0:
-            raise ValueError("The book must have a price")
+        raise ValueError("The book must have a price")
     for already_existent_id in order_list:
         if already_existent_id.get_id() == order_id:
             raise ValueError("This ID already exists. Please enter another one!")
@@ -54,6 +54,10 @@ def update(order_list, updated_order):
     """
     if len(order_list) == 0:
         raise ValueError("There are currently no orders!")
+    types_of_discount = ["none", "silver", "gold"]
+    discount = updated_order.get_discount_type()
+    if discount not in types_of_discount:
+        raise ValueError("This type of discount doesn't exist")
     new_order_list = []
     order_exists = False
     for order in order_list:

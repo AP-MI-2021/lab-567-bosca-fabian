@@ -8,6 +8,8 @@ from Logic.type_min_price import min_price
 from Tests.crud_tests import test_crud
 from Tests.discount_tests import test_discount
 from UserInterface.UI import run_ui
+from UserInterface.cli import run_cli
+
 
 def get_data():
     return [
@@ -19,12 +21,11 @@ def get_data():
 
 
 def main():
-    # order_list = []
-    order_list = get_data()
+    order_list = []
     test_crud()
     test_discount()
     # run_ui(order_list)
-    min_price(order_list)
+    run_cli(order_list)
 
 
 main()
