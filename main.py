@@ -4,10 +4,10 @@ Scrieți un program pentru gestionarea unei librării. Vor fi suportate operați
 . O vânzare conține: ID, titlu carte, gen carte, preț, tip reducere client (none, silver, gold).
 """
 from Domain.Book import BookOrder
-from Logic.type_min_price import min_price
+# from Logic.type_min_price import min_price
 from Tests.crud_tests import test_crud
 from Tests.discount_tests import test_discount
-from UserInterface.UI import run_ui
+# from UserInterface.UI import run_ui
 from UserInterface.cli import run_cli
 
 

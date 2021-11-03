@@ -1,5 +1,8 @@
 from Domain.Book import BookOrder
 from Logic.CRUD import create, delete, update, read
+from Logic.discount import handle_discount
+from Logic.sort import price_sort
+from Logic.type_change import book_type_change
 
 
 def commands_help():
@@ -9,6 +12,9 @@ To delete an order use: delete [id]
 To change an order use: change [id] [title] [type] [price] [discount]
 To show a specific order use: showspec [id]
 To show all orders use: showall
+To apply the discount to every order use: discount
+To sort the current list based on price use: sort
+To change the type of a title use: typechange [title] [type]
 To show the help menu use: help
 To exit use: exit
 
@@ -68,11 +74,25 @@ def run_cli(order_list):
                         raise ValueError("The correct command is: 'delete [id]'")
                     order_list = delete(order_list, int(command[1]))
                 elif command[0] == 'showspec':
+                    if len(command[1:]):
+                        raise ValueError("The correct command is: 'showspec'")
                     print(read(order_list, int(command[1])))
                 elif command[0] == 'change':
                     if len(command[1:]) < 5:
                         raise ValueError("The correct command is: 'change [id] [title] [type] [price] [discount]'")
                     order_list = run_change(order_list, command[1:])
+                elif command[0] == 'discount':
+                    if len(command[1:]):
+                        raise ValueError("The correct command is: 'discount'")
+                    order_list = handle_discount(order_list)
+                elif command[0] == 'sort':
+                    if len(command[1:]):
+                        raise ValueError("The correct command is: 'sort'")
+                    order_list = price_sort(order_list)
+                elif command[0] == 'typechange':
+                    if len(command[1:]):
+                        raise ValueError("The correct command is: 'typechange'")
+                    order_list = book_type_change(order_list, command[1], command[2])
                 elif command[0] == 'help':
                     if len(command[1:]):
                         raise ValueError("The correct command is: 'help'")

@@ -13,7 +13,7 @@ def get_data():
 
 def test_create():
     book_list = get_data()
-    new_book = create_order(5, "Baltagul", "comedie", 50, "none")
+    # new_book = create_order(5, "Baltagul", "comedie", 50, "none")
     new_list = create(book_list, 5, "Baltagul", "comedie", 50, "none")
     assert len(new_list) == len(book_list)+1
 

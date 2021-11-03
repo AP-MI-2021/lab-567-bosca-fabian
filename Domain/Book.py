@@ -42,6 +42,7 @@ class BookOrder:
         return str(self)
 
 
+"""
 def book_types(book_type):
     book_types_dictionary = {}
-    pass
+    pass"""
