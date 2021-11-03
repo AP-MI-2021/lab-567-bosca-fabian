@@ -16,6 +16,9 @@ class BookOrder:
     def change_price(self, new_price):
         self.price = new_price
 
+    def change_type(self, new_type):
+        self.book_type = new_type
+
     def get_id(self):
         return self.ID
 
@@ -37,3 +40,8 @@ class BookOrder:
 
     def __repr__(self):
         return str(self)
+
+
+def book_types(book_type):
+    book_types_dictionary = {}
+    pass

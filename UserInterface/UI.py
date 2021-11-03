@@ -1,5 +1,6 @@
 from Domain.Book import BookOrder
 from Logic.CRUD import delete, create, read, update
+from Logic.type_change import book_type_change
 from Logic.discount import handle_discount
 from Logic.sort import price_sort
 
@@ -18,7 +19,7 @@ def show_menu():
     print("""
 1. Crud options
 2. Apply discount
-3.
+3. Change book type
 4.
 5. Sort orders by price
 a. Show all the current orders
@@ -105,6 +106,16 @@ def crud_ui(order_list):
     return order_list
 
 
+def handle_book_type_change(order_list):
+    try:
+        given_title = input("Name the title of the book you want to have type changed:")
+        given_type = input("Name the new type:")
+        order_list = book_type_change(order_list, given_title, given_type)
+    except ValueError as ve:
+        print("Error:", ve)
+    return order_list
+
+
 def run_ui(order_list):
     stop = False
     while not stop:
@@ -114,6 +125,9 @@ def run_ui(order_list):
             order_list = crud_ui(order_list)
         elif ui_command == '2':
             order_list = handle_discount(order_list)
+            print(order_list)
+        elif ui_command == '3':
+            order_list = handle_book_type_change(order_list)
             print(order_list)
         elif ui_command == '5':
             order_list = price_sort(order_list)
