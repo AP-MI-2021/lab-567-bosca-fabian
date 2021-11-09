@@ -1,7 +1,7 @@
-def handle_new_list(list_versions, current_version, prajituri):
+def handle_new_list(list_versions, current_version, order):
     while current_version < len(list_versions) - 1:
         list_versions.pop()
-    list_versions.append(prajituri)
+    list_versions.append(order)
     return list_versions
 
 
