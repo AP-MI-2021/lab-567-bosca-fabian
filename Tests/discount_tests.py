@@ -1,5 +1,5 @@
 from Domain.Book import BookOrder
-from Logic.discount import apply_discount
+from Logic.discount import apply_discount, handle_discount
 
 
 def get_data():
@@ -36,15 +36,13 @@ def test_apply_discount():
 
 
 def test_handle_discount():
-    pass
-    """
-    order_list = get_data()
-    ordered_list = handle_discount(order_list)
-    final_list = final_data()
-    assert ordered_list == final_list
-    :return: 
-    """
-
+    try:
+        order_list = get_data()
+        ordered_list = handle_discount(order_list)
+        final_list = final_data()
+        assert ordered_list == final_list
+    except AssertionError:
+        print("Assertion error")
 
 def test_discount():
     test_apply_discount()

@@ -1,8 +1,10 @@
 from Domain.Book import BookOrder
 from Logic.CRUD import delete, create, read, update
+from Logic.distinct_titles import dist_title
 from Logic.type_change import book_type_change
 from Logic.discount import handle_discount
 from Logic.sort import price_sort
+from Logic.type_min_price import min_price
 
 
 def show_crud_menu():
@@ -20,8 +22,9 @@ def show_menu():
 1. Crud options
 2. Apply discount
 3. Change book type
-4.
+4. Minimum price for every book type
 5. Sort orders by price
+6. Show number of distinct titles of all types
 a. Show all the current orders
 x. Exit""")
 
@@ -40,6 +43,12 @@ def show_order(order_list):
     except ValueError as ve:
         print("Error:", ve)
     return order_list
+
+
+def show_dist_title(number_of_dist_titles):
+    for key, value in number_of_dist_titles.items():
+        print(f'For the book type {key}, the number of distinct titles is {value}')
+    return
 
 
 def change_order(order_list):
@@ -106,6 +115,12 @@ def crud_ui(order_list):
     return order_list
 
 
+def show_min_price(min_price_dict):
+    for key, value in min_price_dict.items():
+        print(f'For the book type {key}, the minium price is {value}')
+    return
+
+
 def handle_book_type_change(order_list):
     try:
         given_title = input("Name the title of the book you want to have type changed:")
@@ -129,9 +144,15 @@ def run_ui(order_list):
         elif ui_command == '3':
             order_list = handle_book_type_change(order_list)
             print(order_list)
+        elif ui_command == '4':
+            type_min_price = min_price(order_list)
+            show_min_price(type_min_price)
         elif ui_command == '5':
             order_list = price_sort(order_list)
             print(order_list)
+        elif ui_command == '6':
+            nr_dist_title = dist_title(order_list)
+            show_dist_title(nr_dist_title)
         elif ui_command == 'a':
             print(order_list)
         elif ui_command == 'x':

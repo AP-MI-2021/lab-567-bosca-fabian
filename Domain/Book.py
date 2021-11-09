@@ -41,8 +41,11 @@ class BookOrder:
     def __repr__(self):
         return str(self)
 
-
-"""
-def book_types(book_type):
-    book_types_dictionary = {}
-    pass"""
+    def __eq__(self, other):
+        if self.ID == other.ID:
+            if self.price == other.price:
+                if self.book_type == other.book_type:
+                    if self.book_title == other.book_title:
+                        if self.discount_type == other.discount_type:
+                            return 1
+        return 0

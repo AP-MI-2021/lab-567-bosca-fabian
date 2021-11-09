@@ -1,4 +1,4 @@
-def get_all_book_types(order_list):
+def get_all_book_types(order_list: list):
     """
     The functions finds all the book types
     :param order_list: the order list
@@ -11,7 +11,14 @@ def get_all_book_types(order_list):
     return new_list
 
 
-def min_price(order_list):
+def min_price(order_list: list):
+    """
+    The functions finds the minimum price for every book type there is in the order list
+    :param order_list: the order list
+    :return: A dictionary book_type : minimum price
+    """
+    if not len(order_list):
+        raise ValueError("There are no current orders")
     types_list = get_all_book_types(order_list)
     types_dictionary = {}
 
@@ -27,6 +34,4 @@ def min_price(order_list):
             if books.get_price() < types_dictionary[books.get_book_type()]:
                 types_dictionary.update({book_type: book_price})
 
-    return None
-
-
+    return types_dictionary

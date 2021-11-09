@@ -56,9 +56,7 @@ def run_cli(order_list):
             command_line = command_line.split(';')
             for command in command_line:
                 command = command.split()
-                if command[0] == '':
-                    pass
-                elif command[0] == "exit":
+                if command[0] == "exit":
                     print("You exited")
                     stop = True
                 elif command[0] == 'showall':
@@ -90,8 +88,8 @@ def run_cli(order_list):
                         raise ValueError("The correct command is: 'sort'")
                     order_list = price_sort(order_list)
                 elif command[0] == 'typechange':
-                    if len(command[1:]):
-                        raise ValueError("The correct command is: 'typechange'")
+                    if len(command[1:]) != 2:
+                        raise ValueError("The correct command is: 'typechange [title] [type]'")
                     order_list = book_type_change(order_list, command[1], command[2])
                 elif command[0] == 'help':
                     if len(command[1:]):
