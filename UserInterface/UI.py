@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from Domain.Book import BookOrder
 from Logic.CRUD import delete, create, read, update
 from Logic.distinct_titles import dist_title
@@ -5,6 +7,7 @@ from Logic.type_change import book_type_change
 from Logic.discount import handle_discount
 from Logic.sort import price_sort
 from Logic.type_min_price import min_price
+from Logic.undo_redo import handle_new_list, handle_undo, handle_redo
 
 
 def show_crud_menu():
@@ -26,6 +29,10 @@ def show_menu():
 5. Sort orders by price
 6. Show number of distinct titles of all types
 a. Show all the current orders
+
+Undo
+Redo
+
 x. Exit""")
 
 
@@ -133,28 +140,52 @@ def handle_book_type_change(order_list):
 
 def run_ui(order_list):
     stop = False
+    list_versions = [deepcopy(order_list)]
+
+    current_version = 0
     while not stop:
         show_menu()
         ui_command = input("Enter an option: ")
         if ui_command == '1':
             order_list = crud_ui(order_list)
+            list_versions = deepcopy(handle_new_list(list_versions, current_version, order_list))
         elif ui_command == '2':
             order_list = handle_discount(order_list)
+            list_versions = deepcopy(handle_new_list(list_versions, current_version, order_list))
+            current_version += 1
             print(order_list)
         elif ui_command == '3':
             order_list = handle_book_type_change(order_list)
+            list_versions = deepcopy(handle_new_list(list_versions, current_version, order_list))
+            current_version += 1
             print(order_list)
         elif ui_command == '4':
             type_min_price = min_price(order_list)
             show_min_price(type_min_price)
         elif ui_command == '5':
             order_list = price_sort(order_list)
+            list_versions = deepcopy(handle_new_list(list_versions, current_version, order_list))
+            current_version += 1
             print(order_list)
         elif ui_command == '6':
             nr_dist_title = dist_title(order_list)
             show_dist_title(nr_dist_title)
         elif ui_command == 'a':
             print(order_list)
+        elif ui_command == 'Undo':
+            try:
+                current_version -= 1
+                order_list = handle_undo(list_versions, current_version)
+            except ValueError as ve:
+                current_version += 1
+                print("Error:", ve)
+        elif ui_command == 'Redo':
+            try:
+                current_version += 1
+                order_list = handle_redo(list_versions, current_version)
+            except ValueError as ve:
+                current_version -= 1
+                print("Error:", ve)
         elif ui_command == 'x':
             stop = True
         else:
