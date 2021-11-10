@@ -1,5 +1,5 @@
 from Domain.Book import BookOrder
-from Logic.undo_redo import handle_undo, handle_redo
+from Logic.undo_redo import handle_undo, handle_redo, handle_new_list
 
 
 def get_data():
@@ -52,6 +52,18 @@ def test_undo():
         print("Assertion Error")
 
 
+def test_handle_new_list():
+    try:
+        list_version = list_version_data()
+        current_version = 0
+        new_order = get_data()
+        list_version = handle_new_list(list_version, current_version, new_order)
+        assert len(list_version) == 2
+        assert new_order in list_version
+    except AssertionError:
+        print("Assertion Error")
+
+
 def test_redo():
     try:
         list_version = list_version_data()
@@ -66,3 +78,4 @@ def test_redo():
 def test_redo_undo():
     test_undo()
     test_redo()
+    test_handle_new_list()
