@@ -44,6 +44,7 @@ def test_handle_discount():
     except AssertionError:
         print("Assertion error")
 
+
 def test_discount():
     test_apply_discount()
     test_handle_discount()

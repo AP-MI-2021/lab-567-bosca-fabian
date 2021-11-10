@@ -1,26 +1,21 @@
-from Domain.Book import BookOrder
-# from Logic.type_min_price import min_price
 from Tests.crud_tests import test_crud
 from Tests.discount_tests import test_discount
+from Tests.dist_title_tests import test_all_dist_titles
+from Tests.price_min_tests import test_all_min_price
 from Tests.sort_test import test_price_sort
+from Tests.type_change_tests import test_book_type_change
 from UserInterface.UI import run_ui
 
 
-def get_data():
-    return [
-        BookOrder(1, 'Morometii', 'Roman', 35, 'silver'),
-        BookOrder(2, 'Moara cu noroc', 'Nuvela', 40, 'none'),
-        BookOrder(3, 'Poezii', 'Roman', 20, 'gold'),
-        BookOrder(4, 'Harap Alb', 'Basm', 35, 'none'),
-        BookOrder(5, 'Harap Alb', 'Basm', 35, 'gold'),
-    ]
-
-
 def main():
-    order_list = get_data()
-    test_crud()
-    test_discount()
-    test_price_sort()
+    order_list = []
+    test_crud()  # done
+    test_discount()  # done
+    test_book_type_change()  # done
+    test_all_min_price()  # done
+    test_price_sort()  # done
+    test_all_dist_titles()  # done
+
     run_ui(order_list)
     # run_cli(order_list)
 
